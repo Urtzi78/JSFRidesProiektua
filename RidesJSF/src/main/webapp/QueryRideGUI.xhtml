@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Query Ride</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<h2>Bidaia Erreserbatu</h2>
+			<table>
+				<tr>
+					<td><h3>Irteera:</h3></td>
+					<td><h:selectOneMenu id="irteeraH" value="#{query.dCity}">
+							<f:selectItems value="#{query.departCities}" var="hiria"
+								itemValue="#{hiria}" itemLabel="#{hiria}" />
+							<f:ajax event="change" listener="#{query.updateArrivalCities}"
+								render="helmugaH" />
+						</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td><h3>Helmuga:</h3></td>
+					<td><h:selectOneMenu id="helmugaH" value="#{query.aCity}">
+							<f:selectItems value="#{query.arrivalCities}" var="hiria"
+								itemValue="#{hiria}" itemLabel="#{hiria}" />
+						</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td><h3>Data:</h3></td>
+					<td><p:calendar id="data" value="#{query.data}"
+							pattern="yyyy-MM-dd" navigator="true" /></td>
+				</tr>
+			</table>
+
+			<p>
+				<h:commandButton value="Bilatu Bidaiak"
+					action="#{query.bilatuBidaiak}" />
+			</p>
+
+			<h:dataTable value="#{query.bidaiaEskuragarriak}" var="bidaia"
+				border="1">
+				<h:column>
+					<f:facet name="header">Irteera</f:facet>
+                    #{bidaia.from}
+                </h:column>
+				<h:column>
+					<f:facet name="header">Helmuga</f:facet>
+                    #{bidaia.to}
+                </h:column>
+				<h:column>
+					<f:facet name="header">Data</f:facet>
+                    #{bidaia.date}
+                </h:column>
+				<h:column>
+					<f:facet name="header">Prezioa</f:facet>
+                    #{bidaia.price}
+                </h:column>
+			</h:dataTable>
+			<h:commandButton value="Atzera" immediate="true" action="back"></h:commandButton>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
