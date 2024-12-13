@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+	<h:head>
+		<title>Rides Webgunea</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+	<h:body>
+		<h:form>
+			<h1>Erregistratu</h1>
+			<table>
+				<tr>
+					<td>Izena:</td>
+					<td><h:inputText id="name" value="#{register.name}"
+							required="true"
+							requiredMessage="Izena atala ezin du hutsik utzi.">
+						</h:inputText></td>
+					<td><h:message for="name" style="color:red" /></td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><h:inputText id="email" value="#{register.email}"
+							required="true"
+							requiredMessage="Email atala ezin da hutsik utzi.">
+						</h:inputText></td>
+					<td><h:message for="email" style="color:red" /></td>
+				</tr>
+				<tr>
+					<td>Pasahitza:</td>
+					<td><h:inputSecret id="password" value="#{register.password}"
+							required="true"
+							requiredMessage="Pasahitza atala ezin da hutsik utzi.">
+						</h:inputSecret></td>
+					<td><h:message for="password" style="color:red" /></td>
+				</tr>
+			</table>
+			<h:messages style="color:blue" infoStyle="color:green"
+				errorStyle="color:red" fatalStyle="color:darkred" globalOnly="true" />
+			<p>
+				<h:commandButton value="Erregistratu" action="#{register.register}" />
+				<h:commandButton value="Atzera" immediate="true" action="back" />
+			</p>
+
+		</h:form>
+	</h:body>
+</f:view>
+</html>

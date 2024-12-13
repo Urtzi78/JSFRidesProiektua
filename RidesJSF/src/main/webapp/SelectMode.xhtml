@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+	<h:head>
+		<title>Rides Webgunea</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+	<h:body>
+		<h:form>
+			<h1>Aukeratu egin nahi duzuna</h1>
+			<p>
+				<h:commandButton value="Sortu Bidaia" immediate="true"
+					action="create" />
+				<h:commandButton value="Erreserbatu Bidaia" immediate="true"
+					action="query" />
+			</p>
+			<p>
+				<h:commandButton value="Nire Bidaiak" immediate="true"
+					action="rides" />
+				<h:commandButton value="Nire Erreserbak" immediate="true"
+					action="bookings" />
+			</p>
+			<p>
+				<h:commandButton value="Prezio baten bidaia guztiak erakutsi"
+					immediate="true" action="prezio" />
+			</p>
+			<p>
+				<h:commandButton value="Logout" action="#{login.logout}" />
+			</p>
+			<h:messages style="color:blue" />
+		</h:form>
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Rides Webgunea</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+	<h:body>
+		<h:form>
+			<h2>Bidaia Erreserbatu</h2>
+			<table>
+				<tr>
+					<td><h3>Irteera hiria:</h3></td>
+					<td><h:selectOneMenu id="irteeraH" value="#{query.dCity}">
+							<f:selectItems value="#{query.departCities}" var="hiria"
+								itemValue="#{hiria}" itemLabel="#{hiria}" />
+							<f:ajax event="change" listener="#{query.updateArrivalCities}"
+								render="helmugaH" />
+						</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td><h3>Helmuga hiria:</h3></td>
+					<td><h:selectOneMenu id="helmugaH" value="#{query.aCity}">
+							<f:selectItems value="#{query.arrivalCities}" var="hiria"
+								itemValue="#{hiria}" itemLabel="#{hiria}" />
+						</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td><h3>Data:</h3></td>
+					<td><p:calendar id="data" value="#{query.data}"
+							pattern="yyyy-MM-dd" navigator="true" /></td>
+				</tr>
+			</table>
+
+			<p>
+				<h:commandButton value="Bilatu Bidaiak"
+					action="#{query.bilatuBidaiak}" />
+			</p>
+
+			<p:dataTable value="#{query.bidaiaEskuragarriak}" var="bidaia"
+				selection="#{query.selectedRide}" selectionMode="single"
+				rowKey="#{bidaia.rideNumber}">
+				<p:column headerText="Irteera">
+        			#{bidaia.from}
+    			</p:column>
+				<p:column headerText="Helmuga">
+        			#{bidaia.to}
+    			</p:column>
+				<p:column headerText="Eserleku libreak">
+        			#{bidaia.nPlaces}
+    			</p:column>
+				<p:column headerText="Prezioa">
+        			#{bidaia.price}
+    			</p:column>
+			</p:dataTable>
+			<h:messages style="color:blue" infoStyle="color:green"
+				warnStyle="color:orange" errorStyle="color:red"
+				fatalStyle="color:darkred" />
+			<p>
+				<h:commandButton value="Erreserbatu" action="#{query.queryRide}" />
+				<h:commandButton value="Atzera" immediate="true" action="back" />
+			</p>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
